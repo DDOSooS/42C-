@@ -6,6 +6,8 @@
 
 using namespace std;
 
+std::string formatedPrinter(const std::string& value);
+
 class Contact
 {
     private:
@@ -137,29 +139,39 @@ class PhoneBook
             return Contact();
         }
 
-        void showContacts(Contact *contacts)
+        // void showContacts(Contact *contacts)
+        // {
+        //     cout << "|| index | firstName | lastName | nickName ||\n";
+        //     cout << "|| ======================================= ||\n";
+        //     for (int i = 0; i < 8; ++i)
+        //     {
+        //         if (!contacts[i].isEmpty())  // Assuming isEmpty() checks if the contact is valid
+        //         {
+        //             cout << "|| " << formatedPrinter(to_string(i)) << " | " << formatedPrinter(contacts[i].getFirstName()) << " | " 
+        //                 << formatedPrinter(contacts[i].getLastName()) << " | " << formatedPrinter(contacts[i].getNickName()) << " ||\n";
+        //         }
+        //     }
+        //     cout << "|| ======================================= ||\n";
+        // }
+
+        void showContacts(Contact* contacts)
         {
-            cout << "|| index | firstName | lastName | nickName ||\n";
-            cout << "|| ======================================= ||\n";
-            for (int i = 0; i < 8; ++i)
-            {
-                if (!contacts[i].isEmpty())  // Assuming isEmpty() checks if the contact is valid
+            std::cout << "||     index| firstName|  lastName|  nickName||\n";
+            std::cout << "|| ========================================= ||\n";
+            for (int i = 0; i < 8; ++i) {
+                if (!contacts[i].isEmpty()) 
                 {
-                    cout << "|| " << i << " | " << contacts[i].getFirstName() << " | " 
-                        << contacts[i].getLastName() << " | " << contacts[i].getNickName() << " ||\n";
+                    std::cout << "||" 
+                            << formatedPrinter(std::to_string(i)) <<  "|" 
+                            << formatedPrinter(contacts[i].getFirstName()) << "|" 
+                            << formatedPrinter(contacts[i].getLastName()) << "|" 
+                            << formatedPrinter(contacts[i].getNickName()) << "||\n";
                 }
             }
-            cout << "|| ======================================= ||\n";
+            std::cout << "|| ========================================= ||\n";
         }
 
-
-        void displayContact(Contact contact)
-        {
-            cout << "|| firstName | lastName | nickName | phoneNumber | darkestSecret ||\n";
-            cout << "|| ===================================================================== ||\n";
-            cout << "|| " << contact.getFirstName() << " | " << contact.getLastName() << " | "
-                << contact.getNickName() << " | " << contact.getPhoneNumber() << " | " << contact.getDarkestSecret() << " || \n";
-        }
+  
 
         public :
             Contact *getContacts()
@@ -169,5 +181,9 @@ class PhoneBook
 
             
 };
+
+
+void displayContact(Contact contact);
+
 
 #endif
