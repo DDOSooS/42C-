@@ -112,7 +112,7 @@ class PhoneBook
             i = -1;
             while (++i < 8)
             {
-                if (!m_contacts[i].isEmpty())
+                if (m_contacts[i].isEmpty())
                 {
                     m_contacts[i] = contacts;
                     cout << " Contact is being added Succesfully :)\n";
