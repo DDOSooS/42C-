@@ -3,6 +3,25 @@
 #include <iostream>
 #include <string>
 
+bool isInteger(const string& str)
+{
+    if (str.empty())
+        return false;
+
+    size_t i = 0;
+    if (str[i] == '+' || str[i] == '-') { // Allow optional + or - sign
+        i++;
+    }
+
+    for (; i < str.length(); ++i)
+    {
+        if (!isdigit(str[i]))
+            return false;
+    }
+
+    return true;
+}
+
 std::string formatedPrinter(const std::string& value)
 {
     int size = value.length();
@@ -65,8 +84,13 @@ void searchForContact(PhoneBook &phoneBook)
     phoneBook.showContacts(phoneBook.getContacts());
     cout << "try to Enter the index of the Contact that You are Searching For\n";
     getline(cin, indexPrompt);
+    if (! isInteger(indexPrompt))
+    {
+        cout << "TRY NEXT TIME WITH A VALID NUMBER : EX: 1 2 3 5 \n";
+        return ;
+    }
     index = stoi(indexPrompt);
-    if (index < 0 || index > 7 || phoneBook.getContacts()[index].isEmpty())
+    if (index < 0 || index > 7 || phoneBook.getContacts()[index].isEmpty() )
         cout << "TRY NEXT TIME WITH A VALID INDEX \n";
     else
         displayContact(phoneBook.getContacts()[index]);
@@ -88,11 +112,13 @@ int main()
         {
             if (!command.compare("ADD"))
                 saveNewContact(phoneBook);
-            else if (!command.compare("SS"))
+            else if (!command.compare("SEARCH"))
             {
                 cout << "Search for a Contact \n";
                 searchForContact(phoneBook);
             }
+            else
+                cout << " !!!  try with a valid command : ADD | SEARCH | EXIT !!! \n";
         }
     }
     return 0;
