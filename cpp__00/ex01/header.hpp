@@ -7,6 +7,23 @@
 using namespace std;
 
 std::string formatedPrinter(const std::string& value);
+std::string intToString(int value) {
+    std::string result;
+    bool isNegative = value < 0;
+    
+    if (value == 0) return "0";
+    
+    if (isNegative) value = -value;
+    
+    while (value > 0) {
+        result = static_cast<char>('0' + (value % 10)) + result;
+        value /= 10;
+    }
+    
+    if (isNegative) result = "-" + result;
+    
+    return result;
+}
 
 class Contact
 {
@@ -139,21 +156,6 @@ class PhoneBook
             return Contact();
         }
 
-        // void showContacts(Contact *contacts)
-        // {
-        //     cout << "|| index | firstName | lastName | nickName ||\n";
-        //     cout << "|| ======================================= ||\n";
-        //     for (int i = 0; i < 8; ++i)
-        //     {
-        //         if (!contacts[i].isEmpty())  // Assuming isEmpty() checks if the contact is valid
-        //         {
-        //             cout << "|| " << formatedPrinter(to_string(i)) << " | " << formatedPrinter(contacts[i].getFirstName()) << " | " 
-        //                 << formatedPrinter(contacts[i].getLastName()) << " | " << formatedPrinter(contacts[i].getNickName()) << " ||\n";
-        //         }
-        //     }
-        //     cout << "|| ======================================= ||\n";
-        // }
-
         void showContacts(Contact* contacts)
         {
             std::cout << "||     index| firstName|  lastName|  nickName||\n";
@@ -162,7 +164,7 @@ class PhoneBook
                 if (!contacts[i].isEmpty()) 
                 {
                     std::cout << "||" 
-                            << formatedPrinter(std::to_string(i)) <<  "|" 
+                            << formatedPrinter(intToString(i)) <<  "|" 
                             << formatedPrinter(contacts[i].getFirstName()) << "|" 
                             << formatedPrinter(contacts[i].getLastName()) << "|" 
                             << formatedPrinter(contacts[i].getNickName()) << "||\n";

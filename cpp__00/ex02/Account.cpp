@@ -102,7 +102,7 @@ int		Account::checkAmount( void ) const
 
 void    Account::_displayTimestamp()
 {
-    time_t currentTime = std::time(nullptr);
+    time_t currentTime = std::time(NULL);
     tm* localTime = std::localtime(&currentTime);
     cout    << "[" << 1900 + localTime->tm_year << localTime->tm_mon << localTime->tm_mday
             << "-" << localTime->tm_hour << localTime->tm_min << localTime->tm_sec

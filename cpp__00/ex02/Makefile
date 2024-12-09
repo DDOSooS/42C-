@@ -1,10 +1,10 @@
-NAME = megaphone
+NAME = fileLogs
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 GG = g++
 RM = rm -rf
 
-SRC = megaphone.cpp
+SRC = Account.cpp test.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

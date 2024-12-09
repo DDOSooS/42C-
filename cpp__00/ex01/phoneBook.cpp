@@ -9,7 +9,8 @@ bool isInteger(const string& str)
         return false;
 
     size_t i = 0;
-    if (str[i] == '+' || str[i] == '-') { // Allow optional + or - sign
+    if (str[i] == '+' || str[i] == '-')
+    { 
         i++;
     }
 
@@ -37,8 +38,8 @@ std::string formatedPrinter(const std::string& value)
 
 void displayContact(Contact contact)
 {
-    std::cout << "||firstName|  lastName|  nickName||\n";
-    std::cout << "|| ========================================= ||\n";
+    std::cout << "||firstName |  lastName|  nickName||\n";
+    std::cout << "|| ============================== ||\n";
     std::cout << "||" 
         << formatedPrinter(contact.getFirstName()) << "|" 
         << formatedPrinter(contact.getLastName()) << "|" 
@@ -75,6 +76,32 @@ void saveNewContact(PhoneBook &phone)
     cout << "===== Contact has being succesfully Saved =====\n";
 }
 
+int stringToInt(const std::string& str) {
+    int result = 0;
+    bool negative = false;
+    size_t i = 0;
+
+    // Handle optional sign
+    if (str[0] == '-') {
+        negative = true;
+        i++;
+    }
+    else if (str[0] == '+') {
+        i++;
+    }
+
+    // Convert string to integer
+    for (; i < str.length(); ++i) {
+        if (str[i] < '0' || str[i] > '9') {
+            // Invalid character
+            throw std::invalid_argument("Invalid number format");
+        }
+        result = result * 10 + (str[i] - '0');
+    }
+
+    return negative ? -result : result;
+}
+
 void searchForContact(PhoneBook &phoneBook)
 {
     int index;
@@ -89,7 +116,7 @@ void searchForContact(PhoneBook &phoneBook)
         cout << "TRY NEXT TIME WITH A VALID NUMBER : EX: 1 2 3 5 \n";
         return ;
     }
-    index = stoi(indexPrompt);
+    index = stringToInt(indexPrompt);
     if (index < 0 || index > 7 || phoneBook.getContacts()[index].isEmpty() )
         cout << "TRY NEXT TIME WITH A VALID INDEX \n";
     else
