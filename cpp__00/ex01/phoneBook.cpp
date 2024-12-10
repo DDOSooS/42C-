@@ -1,25 +1,72 @@
-#include "./header.hpp"
+#include "./phoneBook.hpp"
 
 #include <iostream>
 #include <string>
+
+ void   PhoneBook::addConctact(Contact &contacts)
+{
+    int i;
+
+    i = -1;
+    while (++i < 8)
+    {
+        if (m_contacts[i].isEmpty())
+        {
+            m_contacts[i] = contacts;
+            cout << " Contact is being added Succesfully :)\n";
+            return;
+        }
+    }
+    m_contacts[7] = contacts;
+    cout << " Contact is being added Succesfully :)\n";
+    return ;
+};
+
+
+Contact PhoneBook::searchForContact(int index)
+{
+    int i;
+
+    i = -1;
+    while (++i < 8)
+    {
+        if (i == index)
+            return (m_contacts[index]);
+    }
+    return Contact();
+}
+
+void  PhoneBook::showContacts(Contact* contacts)
+{
+    std::cout << "||     index| firstName|  lastName|  nickName||\n";
+    std::cout << "|| ========================================= ||\n";
+    for (int i = 0; i < 8; ++i)
+    {
+        if (!contacts[i].isEmpty()) 
+        {
+            std::cout << "||" 
+                    << formatedPrinter(intToString(i)) <<  "|" 
+                    << formatedPrinter(contacts[i].getFirstName()) << "|" 
+                    << formatedPrinter(contacts[i].getLastName()) << "|" 
+                    << formatedPrinter(contacts[i].getNickName()) << "||\n";
+        }
+    }
+    std::cout << "|| ========================================= ||\n";
+}
 
 bool isInteger(const string& str)
 {
     if (str.empty())
         return false;
-
-    size_t i = 0;
+    size_t i;
+    i = 0;
     if (str[i] == '+' || str[i] == '-')
-    { 
         i++;
-    }
-
     for (; i < str.length(); ++i)
     {
         if (!isdigit(str[i]))
             return false;
     }
-
     return true;
 }
 
@@ -28,9 +75,12 @@ std::string formatedPrinter(const std::string& value)
     int size = value.length();
     std::string result;
 
-    if (size >= 10) {
+    if (size >= 10)
+    {
         result = value.substr(0, 9) + ".";
-    } else {
+    }
+    else
+    {
         result = string(10 - size, ' ') + value;
     }
     return result;
@@ -76,29 +126,21 @@ void saveNewContact(PhoneBook &phone)
     cout << "===== Contact has being succesfully Saved =====\n";
 }
 
-int stringToInt(const std::string& str) {
+int stringToInt(const string& str)
+{
     int result = 0;
     bool negative = false;
     size_t i = 0;
 
-    // Handle optional sign
-    if (str[0] == '-') {
+    if (str[0] == '-')
+    {
         negative = true;
         i++;
     }
-    else if (str[0] == '+') {
+    else if (str[0] == '+')
         i++;
-    }
-
-    // Convert string to integer
-    for (; i < str.length(); ++i) {
-        if (str[i] < '0' || str[i] > '9') {
-            // Invalid character
-            throw std::invalid_argument("Invalid number format");
-        }
+    for (; i < str.length(); ++i)
         result = result * 10 + (str[i] - '0');
-    }
-
     return negative ? -result : result;
 }
 
@@ -130,6 +172,7 @@ int main()
 {
     PhoneBook   phoneBook;
     string      command;
+    
     while(1)
     {
         getline(cin, command);
