@@ -3,27 +3,9 @@
 
 #include <string>
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
-
-string intToString(int value)
-{
-    string result;
-    bool isNegative = value < 0;
-
-    if (value == 0)
-        return "0";
-    if (isNegative)
-        value = -value;
-    while (value > 0)
-    {
-        result = (char)('0' + (value % 10)) + result;
-        value /= 10;
-    }
-    if (isNegative)
-        result = "-" + result;
-    return result;
-}
 
 class Contact
 {
@@ -33,103 +15,50 @@ class Contact
         string m_nickName;
         string m_phoneNumber;
         string m_darkestSecret;
+
     public:
 
-        Contact()
-        {
-            this->m_firstName = "";
-            this->m_lastName = "";
-            this->m_nickName = "";
-            this->m_phoneNumber = "";
-            this->m_darkestSecret = "";
-        };
+        Contact();
 
-        Contact(string firsName, string lastName, string nickName, string phoneNumber, string darkestSecret)
-        {
-            this->m_firstName = firsName;
-            this->m_lastName = lastName;
-            this->m_nickName = nickName;
-            this->m_phoneNumber = phoneNumber;
-            this->m_darkestSecret = darkestSecret;
-        };
+        Contact(string firsName, string lastName, string nickName, string phoneNumber, string darkestSecret);
 
-        bool isEmpty() const
-        {
-            return (m_firstName.empty());
-        }
+        bool isEmpty() const;
 
-        void setFirstName(string &firstName)
-        {
-            this->m_firstName = firstName;
-        };
+        void setFirstName(string &firstName);
+        string getFirstName();
 
-        string getFirstName()
-        {
-            return m_firstName;
-        };
+        void setLastName(string &lastName);
+        string getLastName();
 
-        void setLastName(string &lastName)
-        {
-            this->m_lastName = lastName;
-        }
+        void setPhoneNumber(string &tPhoneNumber);
+        string getPhoneNumber();
 
-        string getLastName()
-        {
-            return m_lastName;
-        }
+        void setNickName(string &nickName);
+        string getNickName();
 
-        void setPhoneNumber(string &tPhoneNumber)
-        {
-            this->m_phoneNumber = tPhoneNumber;
-        }
-
-        string getPhoneNumber()
-        {
-            return m_phoneNumber;
-        }
-
-        void setNickName(string &nickName)
-        {
-            this->m_nickName = nickName;
-        }
-
-        string getNickName()
-        {
-            return m_nickName;
-        }
-
-        void setDarkestSecret(string &darkestSecret)
-        {
-            this->m_darkestSecret = darkestSecret;
-        }
-
-        string getDarkestSecret()
-        {
-            return m_darkestSecret;
-        }
+        void setDarkestSecret(string &darkestSecret);
+        string getDarkestSecret();
 
     ~Contact(){};
 };
 
 class PhoneBook
 {
-    public:
+    private :
         Contact m_contacts[8];
 
+    public:
         void addConctact(Contact &contacts);
 
         Contact searchForContact(int index);
 
         void showContacts(Contact* contacts);
   
-        Contact *getContacts()
-        {
-            return m_contacts;
-        }
+        Contact*    getContacts();
 };
-
 
 void displayContact(Contact contact);
 string formatedPrinter(const std::string& value);
+string intToString(int value);
 
 #endif

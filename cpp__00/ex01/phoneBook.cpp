@@ -3,6 +3,105 @@
 #include <iostream>
 #include <string>
 
+Contact::Contact()
+{
+    this->m_firstName = "";
+    this->m_lastName = "";
+    this->m_nickName = "";
+    this->m_phoneNumber = "";
+    this->m_darkestSecret = "";
+};
+
+Contact::Contact(string firsName, string lastName, string nickName, string phoneNumber, string darkestSecret)
+{
+    this->m_firstName = firsName;
+    this->m_lastName = lastName;
+    this->m_nickName = nickName;
+    this->m_phoneNumber = phoneNumber;
+    this->m_darkestSecret = darkestSecret;
+};
+
+bool Contact::isEmpty() const
+{
+    return (m_firstName.empty());
+}
+
+void Contact::setFirstName(string &firstName)
+{
+    this->m_firstName = firstName;
+};
+
+string Contact::getFirstName()
+{
+    return m_firstName;
+};
+
+Contact*    PhoneBook::getContacts()
+{
+    return  m_contacts;
+}
+
+void Contact::setLastName(string &lastName)
+{
+    this->m_lastName = lastName;
+}
+
+string Contact::getLastName()
+{
+    return m_lastName;
+}
+
+void Contact::setPhoneNumber(string &tPhoneNumber)
+{
+    this->m_phoneNumber = tPhoneNumber;
+}
+
+string Contact::getPhoneNumber()
+{
+    return m_phoneNumber;
+}
+
+void Contact::setNickName(string &nickName)
+{
+    this->m_nickName = nickName;
+}
+
+string Contact::getNickName()
+{
+    return m_nickName;
+}
+
+void Contact::setDarkestSecret(string &darkestSecret)
+{
+    this->m_darkestSecret = darkestSecret;
+}
+
+string Contact::getDarkestSecret()
+{
+    return m_darkestSecret;
+}
+
+
+
+string intToString(int value)
+{
+    string result;
+    bool isNegative = value < 0;
+
+    if (value == 0)
+        return "0";
+    if (isNegative)
+        value = -value;
+    while (value > 0)
+    {
+        result = (char)('0' + (value % 10)) + result;
+        value /= 10;
+    }
+    if (isNegative)
+        result = "-" + result;
+    return result;
+}
+
  void   PhoneBook::addConctact(Contact &contacts)
 {
     int i;
@@ -38,6 +137,8 @@ Contact PhoneBook::searchForContact(int index)
 
 void  PhoneBook::showContacts(Contact* contacts)
 {
+    if (!cin)
+        cin.clear();
     std::cout << "||     index| firstName|  lastName|  nickName||\n";
     std::cout << "|| ========================================= ||\n";
     for (int i = 0; i < 8; ++i)
@@ -98,14 +199,20 @@ void displayContact(Contact contact)
 
 string getFiledValue(const char *field)
 {
-    string  value;
-    cout << " === >   Enter Your "<<  field  <<"< ===\n";
-    while(getline(cin, value))
+    string value;
+
+    cout << " === >   Enter Your " << field << " < ===\n";
+    while (true)
     {
+        if (!getline(cin, value) || cin.fail())  
+        {
+            cout << "Error reading input. Exiting...\n";
+            exit(1);  
+        }
         if (!value.empty())
-            break;
-        cout << "this fiels mustn't be empty\n";
-        cout << " === >   Enter Your "<<  field  <<"< ===\n";
+            break; 
+        cout << "This field mustn't be empty\n";
+        cout << " === >   Enter Your " << field << " < ===\n";
     }
     return value;
 }
@@ -114,13 +221,18 @@ void saveNewContact(PhoneBook &phone)
 {
     string fName, lName, nName, dSecret, pNumber;
     Contact newContact;
-
+    
+    if (cin.eof())
+        return ;
     cout << "=====> Start saving Contact <=====\n";
     fName = getFiledValue("First Name");
     lName = getFiledValue("Last Name");
     nName = getFiledValue("Nick Name");
     pNumber = getFiledValue("Phone Number");
     dSecret = getFiledValue("darkestSecret");
+    
+    if (cin.eof())
+        return;
     newContact = Contact(fName, lName, nName, pNumber, dSecret);
     phone.addConctact(newContact);
     cout << "===== Contact has being succesfully Saved =====\n";
@@ -167,18 +279,25 @@ void searchForContact(PhoneBook &phoneBook)
     return ;
 }
 
-
 int main()
 {
     PhoneBook   phoneBook;
     string      command;
     
-    while(1)
-    {
-        getline(cin, command);
-        if (!command.compare("EXIT"))    
+    while(1 && !cin.eof())
+    {   
+        cout << "Enter a command : (ADD | SEARCH | EXIT)\n"; 
+        if (!getline(cin, command))
+        {
+            if (cin.eof())
+            {
+                cout << "\nEOF detected. Exiting...\n";
+                break;
+            }
+        }
+        if (!command.empty() && (!command.compare("EXIT")))    
             break;
-        if (! command.empty())
+        if (!command.empty() && (!command.empty()))
         {
             if (!command.compare("ADD"))
                 saveNewContact(phoneBook);

@@ -53,7 +53,6 @@ int Account::getNbWithdrawals()
 
 void	Account::makeDeposit( int deposit )
 {
-
     int old_amount;
 
     old_amount = this->_amount;
@@ -102,8 +101,8 @@ int		Account::checkAmount( void ) const
 
 void    Account::_displayTimestamp()
 {
-    time_t currentTime = std::time(NULL);
-    tm* localTime = std::localtime(&currentTime);
+    time_t currentTime = time(NULL);
+    tm* localTime = localtime(&currentTime);
     cout    << "[" << 1900 + localTime->tm_year << localTime->tm_mon << localTime->tm_mday
             << "-" << localTime->tm_hour << localTime->tm_min << localTime->tm_sec
             << "]";
