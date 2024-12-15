@@ -28,7 +28,7 @@ Account::~Account()
     _displayTimestamp();
         cout    << " index:" << this->_accountIndex << ";"
             << "amount:" << this->_amount << ";"
-            << "colosed\n";
+            << "closed\n";
 }
 
 int	Account::getNbAccounts()
@@ -78,7 +78,7 @@ bool    Account::makeWithdrawal(int withdrawal)
         _displayTimestamp();
         cout    << " index:" << this->_accountIndex << ";"
                 << "p_amount:" << this->_amount << ";"
-                << "withdrawal: refused" << "\n";
+                << "withdrawal:refused" << "\n";
         return false;
     }
     this->_amount -= withdrawal;
@@ -111,7 +111,7 @@ void    Account::_displayTimestamp()
 void    Account::displayAccountsInfos() 
 {
     Account::_displayTimestamp();
-    cout    << " acounts:" << Account::_nbAccounts << ";"
+    cout    << " accounts:" << Account::_nbAccounts << ";"
             << "total:" << Account::_totalAmount << ";"
             << "deposits:" << Account::_totalNbDeposits << ";"
             << "withdrawals:" << Account::_totalNbWithdrawals << "\n";

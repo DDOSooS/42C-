@@ -107,6 +107,16 @@ string intToString(int value)
     int i;
 
     i = -1;
+    if (!m_contacts[7].isEmpty())
+    {
+        while (++i < 7)
+        {
+            m_contacts[i] = m_contacts[i + 1];
+        }
+        m_contacts[7] = contacts;
+        cout << " Contact is being added Succesfully :)\n";
+        return ;
+    }
     while (++i < 8)
     {
         if (m_contacts[i].isEmpty())
@@ -116,9 +126,6 @@ string intToString(int value)
             return;
         }
     }
-    m_contacts[7] = contacts;
-    cout << " Contact is being added Succesfully :)\n";
-    return ;
 };
 
 
