@@ -265,6 +265,11 @@ void searchForContact(PhoneBook &phoneBook)
     phoneBook.showContacts(phoneBook.getContacts());
     cout << "try to Enter the index of the Contact that You are Searching For\n";
     getline(cin, indexPrompt);
+    if (cin.eof())
+    {
+        cout << "\nEOF detected. Exiting...\n";
+        exit(EXIT_FAILURE);
+    }
     if (! isInteger(indexPrompt))
     {
         cout << "TRY NEXT TIME WITH A VALID NUMBER : EX: 1 2 3 5 \n";
