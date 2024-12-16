@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cctype>
 
-using namespace std;
 int main(int ac, char **av)
 {
     if (ac > 1)

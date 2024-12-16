@@ -5,39 +5,37 @@
 #include <iostream>
 #include <cstdlib>
 
-using namespace std;
-
 class Contact
 {
     private:
-        string m_firstName;
-        string m_lastName;
-        string m_nickName;
-        string m_phoneNumber;
-        string m_darkestSecret;
+        std::string m_firstName;
+        std::string m_lastName;
+        std::string m_nickName;
+        std::string m_phoneNumber;
+        std::string m_darkestSecret;
 
     public:
 
         Contact();
 
-        Contact(string firsName, string lastName, string nickName, string phoneNumber, string darkestSecret);
+        Contact(std::string firsName, std::string lastName, std::string nickName, std::string phoneNumber, std::string darkestSecret);
 
         bool isEmpty() const;
 
-        void setFirstName(string &firstName);
-        string getFirstName();
+        void setFirstName(std::string &firstName);
+        std::string getFirstName();
 
-        void setLastName(string &lastName);
-        string getLastName();
+        void setLastName(std::string &lastName);
+        std::string getLastName();
 
-        void setPhoneNumber(string &tPhoneNumber);
-        string getPhoneNumber();
+        void setPhoneNumber(std::string &tPhoneNumber);
+        std::string getPhoneNumber();
 
-        void setNickName(string &nickName);
-        string getNickName();
+        void setNickName(std::string &nickName);
+        std::string getNickName();
 
-        void setDarkestSecret(string &darkestSecret);
-        string getDarkestSecret();
+        void setDarkestSecret(std::string &darkestSecret);
+        std::string getDarkestSecret();
 
     ~Contact(){};
 };
@@ -58,7 +56,7 @@ class PhoneBook
 };
 
 void displayContact(Contact contact);
-string formatedPrinter(const std::string& value);
-string intToString(int value);
+std::string formatedPrinter(const std::string& value);
+std::string intToString(int value);
 
 #endif

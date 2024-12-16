@@ -12,7 +12,7 @@ Contact::Contact()
     this->m_darkestSecret = "";
 };
 
-Contact::Contact(string firsName, string lastName, string nickName, string phoneNumber, string darkestSecret)
+Contact::Contact(std::string firsName, std::string lastName, std::string nickName, std::string phoneNumber, std::string darkestSecret)
 {
     this->m_firstName = firsName;
     this->m_lastName = lastName;
@@ -26,12 +26,12 @@ bool Contact::isEmpty() const
     return (m_firstName.empty());
 }
 
-void Contact::setFirstName(string &firstName)
+void Contact::setFirstName(std::string &firstName)
 {
     this->m_firstName = firstName;
 };
 
-string Contact::getFirstName()
+std::string Contact::getFirstName()
 {
     return m_firstName;
 };
@@ -41,51 +41,49 @@ Contact*    PhoneBook::getContacts()
     return  m_contacts;
 }
 
-void Contact::setLastName(string &lastName)
+void Contact::setLastName(std::string &lastName)
 {
     this->m_lastName = lastName;
 }
 
-string Contact::getLastName()
+std::string Contact::getLastName()
 {
     return m_lastName;
 }
 
-void Contact::setPhoneNumber(string &tPhoneNumber)
+void Contact::setPhoneNumber(std::string &tPhoneNumber)
 {
     this->m_phoneNumber = tPhoneNumber;
 }
 
-string Contact::getPhoneNumber()
+std::string Contact::getPhoneNumber()
 {
     return m_phoneNumber;
 }
 
-void Contact::setNickName(string &nickName)
+void Contact::setNickName(std::string &nickName)
 {
     this->m_nickName = nickName;
 }
 
-string Contact::getNickName()
+std::string Contact::getNickName()
 {
     return m_nickName;
 }
 
-void Contact::setDarkestSecret(string &darkestSecret)
+void Contact::setDarkestSecret(std::string &darkestSecret)
 {
     this->m_darkestSecret = darkestSecret;
 }
 
-string Contact::getDarkestSecret()
+std::string Contact::getDarkestSecret()
 {
     return m_darkestSecret;
 }
 
-
-
-string intToString(int value)
+std::string intToString(int value)
 {
-    string result;
+    std::string result;
     bool isNegative = value < 0;
 
     if (value == 0)
@@ -114,7 +112,7 @@ string intToString(int value)
             m_contacts[i] = m_contacts[i + 1];
         }
         m_contacts[7] = contacts;
-        cout << " Contact is being added Succesfully :)\n";
+        std::cout << " Contact is being added Succesfully :)\n";
         return ;
     }
     while (++i < 8)
@@ -122,7 +120,7 @@ string intToString(int value)
         if (m_contacts[i].isEmpty())
         {
             m_contacts[i] = contacts;
-            cout << " Contact is being added Succesfully :)\n";
+            std::cout << " Contact is being added Succesfully :)\n";
             return;
         }
     }
@@ -144,8 +142,8 @@ Contact PhoneBook::searchForContact(int index)
 
 void  PhoneBook::showContacts(Contact* contacts)
 {
-    if (!cin)
-        cin.clear();
+    if (!std::cin)
+        std::cin.clear();
     std::cout << "||     index| firstName|  lastName|  nickName||\n";
     std::cout << "|| ========================================= ||\n";
     for (int i = 0; i < 8; ++i)
@@ -162,7 +160,7 @@ void  PhoneBook::showContacts(Contact* contacts)
     std::cout << "|| ========================================= ||\n";
 }
 
-bool isInteger(const string& str)
+bool isInteger(const std::string& str)
 {
     if (str.empty())
         return false;
@@ -189,7 +187,7 @@ std::string formatedPrinter(const std::string& value)
     }
     else
     {
-        result = string(10 - size, ' ') + value;
+        result = std::string(10 - size, ' ') + value;
     }
     return result;
 }
@@ -204,48 +202,47 @@ void displayContact(Contact contact)
         << formatedPrinter(contact.getNickName()) << "||\n";
 }
 
-string getFiledValue(const char *field)
+std::string getFiledValue(const char *field)
 {
-    string value;
+    std::string value;
 
-    cout << " === >   Enter Your " << field << " < ===\n";
+    std::cout << " === >   Enter Your " << field << " < ===\n";
     while (true)
     {
-        if (!getline(cin, value) || cin.fail())  
+        if (!getline(std::cin, value) || std::cin.fail())  
         {
-            cout << "Error reading input. Exiting...\n";
+            std::cout << "Error reading input. Exiting...\n";
             exit(1);  
         }
         if (!value.empty())
             break; 
-        cout << "This field mustn't be empty\n";
-        cout << " === >   Enter Your " << field << " < ===\n";
+        std::cout << "This field mustn't be empty\n";
+        std::cout << " === >   Enter Your " << field << " < ===\n";
     }
     return value;
 }
 
 void saveNewContact(PhoneBook &phone)
 {
-    string fName, lName, nName, dSecret, pNumber;
+    std::string fName, lName, nName, dSecret, pNumber;
     Contact newContact;
     
-    if (cin.eof())
+    if (std::cin.eof())
         return ;
-    cout << "=====> Start saving Contact <=====\n";
+    std::cout << "=====> Start saving Contact <=====\n";
     fName = getFiledValue("First Name");
     lName = getFiledValue("Last Name");
     nName = getFiledValue("Nick Name");
     pNumber = getFiledValue("Phone Number");
     dSecret = getFiledValue("darkestSecret");
-    
-    if (cin.eof())
+    if (std::cin.eof())
         return;
     newContact = Contact(fName, lName, nName, pNumber, dSecret);
     phone.addConctact(newContact);
-    cout << "===== Contact has being succesfully Saved =====\n";
+    std::cout << "===== Contact has being succesfully Saved =====\n";
 }
 
-int stringToInt(const string& str)
+int stringToInt(const std::string& str)
 {
     int result = 0;
     bool negative = false;
@@ -266,44 +263,44 @@ int stringToInt(const string& str)
 void searchForContact(PhoneBook &phoneBook)
 {
     int index;
-    string indexPrompt;
+    std::string indexPrompt;
 
-    cout << "=====> Start Searching For Contact <=====\n";
+    std::cout << "=====> Start Searching For Contact <=====\n";
     phoneBook.showContacts(phoneBook.getContacts());
-    cout << "try to Enter the index of the Contact that You are Searching For\n";
-    getline(cin, indexPrompt);
-    if (cin.eof())
+    std::cout << "try to Enter the index of the Contact that You are Searching For\n";
+    getline(std::cin, indexPrompt);
+    if (std::cin.eof())
     {
-        cout << "\nEOF detected. Exiting...\n";
+        std::cout << "\nEOF detected. Exiting...\n";
         exit(EXIT_FAILURE);
     }
     if (! isInteger(indexPrompt))
     {
-        cout << "TRY NEXT TIME WITH A VALID NUMBER : EX: 1 2 3 5 \n";
+        std::cout << "TRY NEXT TIME WITH A VALID NUMBER : EX: 1 2 3 5 \n";
         return ;
     }
     index = stringToInt(indexPrompt);
     if (index < 0 || index > 7 || phoneBook.getContacts()[index].isEmpty() )
-        cout << "TRY NEXT TIME WITH A VALID INDEX \n";
+        std::cout << "TRY NEXT TIME WITH A VALID INDEX \n";
     else
         displayContact(phoneBook.getContacts()[index]);
-    cout << "=====> The end of  Searching For Contact <=====\n";
+    std::cout << "=====> The end of  Searching For Contact <=====\n";
     return ;
 }
 
 int main()
 {
     PhoneBook   phoneBook;
-    string      command;
+    std::string      command;
     
-    while(1 && !cin.eof())
+    while(1 && !std::cin.eof())
     {   
-        cout << "Enter a command : (ADD | SEARCH | EXIT)\n"; 
-        if (!getline(cin, command))
+        std::cout << "Enter a command : (ADD | SEARCH | EXIT)\n"; 
+        if (!getline(std::cin, command))
         {
-            if (cin.eof())
+            if (std::cin.eof())
             {
-                cout << "\nEOF detected. Exiting...\n";
+                std::cout << "\nEOF detected. Exiting...\n";
                 break;
             }
         }
@@ -315,11 +312,11 @@ int main()
                 saveNewContact(phoneBook);
             else if (!command.compare("SEARCH"))
             {
-                cout << "Search for a Contact \n";
+                std::cout << "Search for a Contact \n";
                 searchForContact(phoneBook);
             }
             else
-                cout << " !!!  try with a valid command : ADD | SEARCH | EXIT !!! \n";
+                std::cout << " !!!  try with a valid command : ADD | SEARCH | EXIT !!! \n";
         }
     }
     return 0;
