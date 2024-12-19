@@ -4,7 +4,7 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 GG = c++
 RM = rm -rf
 
-SRC = phoneBook.cpp
+SRC = PhoneBook.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
