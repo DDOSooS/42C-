@@ -4,7 +4,7 @@
 
 #include "./ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class FragTrap :virtual public ClapTrap
 {
 
     public:
@@ -14,23 +14,5 @@ class FragTrap : public ClapTrap
 
         void highFivesGuys(void);
 };
-
-
-// class ScavTrap : public ClapTrap 
-// {
-//     private:
-       
-//     public:
-//         ScavTrap();
-
-//         ScavTrap(std::string &name);
-        
-//         ~ScavTrap();
-
-//         void attack(const std::string& target) override;
-
-//         void guardGate();
-// };
-
 
 #endif

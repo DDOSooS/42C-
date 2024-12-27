@@ -55,6 +55,7 @@ unsigned int ClapTrap::getAttackDamage() const { return _attackDamage; };
 void ClapTrap::setHitPoints(unsigned int points) { _hitPoint = points; };
 void ClapTrap::setEnergyPoints(unsigned int points) { _energyPoint = points; };
 void ClapTrap::setAttackDamage(unsigned int damage) { _attackDamage = damage; };
+void ClapTrap::setName(std::string &name) { this->_name = name;};
 
 void ClapTrap::attack(const std::string& target)
 {

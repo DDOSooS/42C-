@@ -1,10 +1,9 @@
-#pragma once
-#ifndef SCAV_TRAP_HPP
-#define SCAV_TRAP_HPP
+#ifndef SCAVTRAP_HPP
+#define SCAVTRAP_HPP
 
 #include "./ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap 
+class ScavTrap : virtual public ClapTrap 
 {
     private:
        
@@ -19,6 +18,5 @@ class ScavTrap : public ClapTrap
 
         void guardGate();
 };
-
 
 #endif

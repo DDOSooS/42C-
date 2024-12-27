@@ -37,6 +37,4 @@ class ClapTrap
         void setAttackDamage(unsigned int damage); 
 };
 
-
-
 #endif
