@@ -1,0 +1,23 @@
+[Unknown Animal] Grrr...
+[Unknown WrongAnimal] Grrbadabibobidap...
+[D] Default destructor called for type : UNKNOWN.
+[D] Default destructor called for type : CAT.
+[D] Default destructor called for type : DOG.
+[D] Default destructor called for type : WRONGCAT.
+onstructor called for type : DOG.
+[C] A new dog appear !
+[C] Animal base constructor called for type : CAT.
+[C] A new Cat quietly approaches..
+[C] WrongAnimal base constructor called for type : WRONGCAT.
+[C] Something strange approaches..
+DOG 
+CAT 
+[Cat] : Meaouw..
+[Dog] : Wouaf wouaf
+[Unknown Animal] Grrr...
+[Unknown WrongAnimal] Grrbadabibobidap...
+[D] Default destructor called for type : UNKNOWN.
+[D] Default destructor called for type : CAT.
+[D] Default destructor called for type : DOG.
+[D] Default destructor called for type : WRONGCAT.
+
