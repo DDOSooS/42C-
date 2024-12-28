@@ -4,15 +4,28 @@ ScavTrap::ScavTrap():ClapTrap(){}
 
 ScavTrap::ScavTrap(std::string &name) : ClapTrap(name)
 {
-    std::cout << "ScavTrap Object is being Created\n";
+    std::cout << "[Constructor]: ScavTrap Object is being Created\n";
     this->setAttackDamage(20);
     this->setEnergyPoints(50);
     this->setHitPoints(100);
 }
 
+ScavTrap::ScavTrap(const ScavTrap &copy):ClapTrap(copy)
+{
+    std::cout << "[Copy Constructor]: ClapTrap Copy constructor called\n";
+}
+
+ScavTrap & ScavTrap::operator=(const ScavTrap &copy)
+{
+   std::cout << "[Copy Assignement Constructor]: ClapTrap Copy constructor called\n";
+    if (this != &copy)
+        ClapTrap::operator=(copy); 
+    return (*this);
+}
+
 ScavTrap::~ScavTrap()
 {
-    std::cout << "ScavTrap Object is being Destroyed\n";
+    std::cout << "[Deconstructor]: ScavTrap Object is being Destroyed\n";
 }
 
 void ScavTrap::attack(const std::string& target)

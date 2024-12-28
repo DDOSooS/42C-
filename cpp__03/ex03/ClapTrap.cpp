@@ -2,7 +2,7 @@
 
 ClapTrap::ClapTrap()
 {
-    std::cout << "ClapTrap Object is being Created\n";
+    std::cout << "[Default constructor]: ClapTrap Object is being Created\n";
     this->_name = "";
     this->_attackDamage = 0;
     this->_energyPoint = 10;
@@ -11,7 +11,7 @@ ClapTrap::ClapTrap()
 
 ClapTrap::ClapTrap(std::string &name)
 {
-    std::cout << "ClapTrap Object is being Created\n";
+    std::cout << "[Constructor]: ClapTrap Object is being Created\n";
     this->_name = name;
     this->_energyPoint = 10;
     this->_hitPoint = 10;
@@ -20,7 +20,7 @@ ClapTrap::ClapTrap(std::string &name)
 
 ClapTrap::ClapTrap(const ClapTrap &copy)
 {
-    std::cout << "ClapTrap Copy Constructor is being Called\n";
+    std::cout << "[Copy Constructor]: ClapTrap Copy Constructor is being Called\n";
     this->_name = copy.getName();
     this->_hitPoint = copy.getHitPoints();
     this->_energyPoint = copy.getEnergyPoints();
@@ -29,7 +29,7 @@ ClapTrap::ClapTrap(const ClapTrap &copy)
 
 ClapTrap& ClapTrap::operator=(const ClapTrap &copy)
 {
-    std::cout << "ClapTrap Copy assignement Constructor is being Called\n";
+    std::cout << "[Copy Assignement Constructor]: ClapTrap Copy assignement Constructor is being Called\n";
     if (this != &copy)
     {
         this->_name = copy.getName();
@@ -42,7 +42,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &copy)
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "ClapTrap Object is being Destroyed\n";
+    std::cout << "[Deconstructor]: ClapTrap Object is being Destroyed\n";
 }
 
 // Getters

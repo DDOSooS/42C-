@@ -25,5 +25,3 @@ void Animal::makeSound() const
 {
     std::cout << "I'm just an Humain without Brain\n";
 }
-
-

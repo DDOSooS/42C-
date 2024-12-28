@@ -32,6 +32,7 @@ class ClapTrap
         unsigned int getAttackDamage() const ;
 
         // Setters
+        void setName(std::string &name);
         void setHitPoints(unsigned int points); 
         void setEnergyPoints(unsigned int points);
         void setAttackDamage(unsigned int damage); 

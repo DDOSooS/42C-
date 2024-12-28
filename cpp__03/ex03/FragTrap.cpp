@@ -4,7 +4,7 @@ FragTrap::FragTrap():ClapTrap(){}
 
 FragTrap::FragTrap(std::string &name): ClapTrap(name)
 {
-    std::cout << "FragTrap Object is being Created\n";
+    std::cout << "[Constructor]: FragTrap Object is being Created\n";
     this->setAttackDamage(30);
     this->setEnergyPoints(100);
     this->setHitPoints(100);
@@ -12,7 +12,20 @@ FragTrap::FragTrap(std::string &name): ClapTrap(name)
 
 FragTrap::~FragTrap()
 {
-    std::cout << "FragTrap Object is being Destroyed\n";
+    std::cout << "[Deconstructor]: FragTrap Object is being Destroyed\n";
+}
+
+FragTrap::FragTrap(const FragTrap &copy):ClapTrap(copy)
+{
+    std::cout << "[Copy Constructor]: is being Called\n";
+}
+
+FragTrap & FragTrap::operator=(const FragTrap &copy)
+{
+    std::cout << "[Copy Assignement Constructor]: is being Called\n";
+    if (this != &copy)
+        ClapTrap::operator=(copy);
+    return (*this);
 }
 
 void FragTrap::highFivesGuys(void)
