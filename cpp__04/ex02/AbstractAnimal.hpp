@@ -1,23 +1,21 @@
 #pragma once
 #ifndef AIMAL_HPP
-#define ANIMAL_HPP
+#define AbstractAnimal_HPP
 
 #include <iostream>
 #include <string>
 
-class Animal
+class AbstractAnimal
 {
     protected:
         std::string _type;
     public:
-        Animal();
-        virtual ~Animal();
-        Animal(const Animal &copy);
-        Animal & operator=(const Animal &copy);
+        AbstractAnimal();
+        virtual ~AbstractAnimal();
         void setType(std::string &type) ;
         std::string getType() const;
 
-        virtual void makeSound() const;
+        virtual void makeSound() const = 0;
 };
 
 #endif

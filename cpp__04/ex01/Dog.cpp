@@ -4,11 +4,13 @@ Dog::Dog()
 {
     std::cout << "\033[32m[Constructor]:\033[0m Dog Object is being Created\n";
     this->_type = "Dog";
+    this->_brain = new Brain();
 }
 
 Dog::Dog(const Dog &copy):Animal(copy)
 {
     std::cout << "[Copy Constructor]: Dog Object is being Called\n";
+    this->_brain = copy.getBrain();
 }
 
 Dog & Dog::operator=(const Dog &copy)
@@ -19,6 +21,15 @@ Dog & Dog::operator=(const Dog &copy)
     return (*this);
 }
 
+Brain * Dog::getBrain() const
+{
+    return (this->_brain);
+}
+
+void Dog::setBrain(Brain *brain)
+{
+    this->_brain = brain;
+}
 
 void Dog::makeSound() const 
 {
@@ -27,5 +38,6 @@ void Dog::makeSound() const
 
 Dog::~Dog()
 {
+    delete _brain;
     std::cout << "\033[31m[DeConstructor]:\033[0m Dog Object is being Destroyed\n";
 }
