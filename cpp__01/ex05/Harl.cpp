@@ -40,7 +40,7 @@ int hash(std::string level)
     return (4);
 }
 
-void    Harl::complain( std::string level )
+void    Harl::complain(std::string level)
 {
     int hashLevel;
     void (Harl::*mumberFunc[4])() = {

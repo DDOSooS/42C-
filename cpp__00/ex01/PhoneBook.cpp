@@ -1,91 +1,26 @@
 #include "./PhoneBook.hpp"
 
-#include <iostream>
-#include <string>
-
-Contact::Contact()
+bool isPrintable(std::string &field)
 {
-    this->m_firstName = "";
-    this->m_lastName = "";
-    this->m_nickName = "";
-    this->m_phoneNumber = "";
-    this->m_darkestSecret = "";
-};
-
-Contact::Contact(std::string firsName, std::string lastName, std::string nickName, std::string phoneNumber, std::string darkestSecret)
-{
-    this->m_firstName = firsName;
-    this->m_lastName = lastName;
-    this->m_nickName = nickName;
-    this->m_phoneNumber = phoneNumber;
-    this->m_darkestSecret = darkestSecret;
-};
-
-bool Contact::isEmpty() const
-{
-    return (m_firstName.empty());
+    for (size_t i = 0; i < field.length(); i++)
+    {
+        if (field[i] < 32 || field[i] > 126)
+            return (false);
+    }
+    return (true);
 }
-
-void Contact::setFirstName(std::string &firstName)
-{
-    this->m_firstName = firstName;
-};
-
-std::string Contact::getFirstName()
-{
-    return m_firstName;
-};
 
 Contact*    PhoneBook::getContacts()
 {
     return  m_contacts;
 }
 
-void Contact::setLastName(std::string &lastName)
-{
-    this->m_lastName = lastName;
-}
-
-std::string Contact::getLastName()
-{
-    return m_lastName;
-}
-
-void Contact::setPhoneNumber(std::string &tPhoneNumber)
-{
-    this->m_phoneNumber = tPhoneNumber;
-}
-
-std::string Contact::getPhoneNumber()
-{
-    return m_phoneNumber;
-}
-
-void Contact::setNickName(std::string &nickName)
-{
-    this->m_nickName = nickName;
-}
-
-std::string Contact::getNickName()
-{
-    return m_nickName;
-}
-
-void Contact::setDarkestSecret(std::string &darkestSecret)
-{
-    this->m_darkestSecret = darkestSecret;
-}
-
-std::string Contact::getDarkestSecret()
-{
-    return m_darkestSecret;
-}
-
 std::string intToString(int value)
 {
     std::string result;
-    bool isNegative = value < 0;
-
+    bool isNegative;
+    
+    isNegative = (value < 0);
     if (value == 0)
         return "0";
     if (isNegative)
@@ -126,8 +61,7 @@ std::string intToString(int value)
     }
 };
 
-
-Contact PhoneBook::searchForContact(int index)
+Contact PhoneBook::getContact(int index)
 {
     int i;
 
@@ -160,9 +94,9 @@ void  PhoneBook::showContacts(Contact* contacts)
     std::cout << "|| ========================================= ||\n";
 }
 
-bool isInteger(const std::string& str)
+bool isInteger(std::string& str)
 {
-    if (str.empty())
+    if (str.empty() || !isPrintable(str))
         return false;
     size_t i;
     i = 0;
@@ -214,7 +148,7 @@ std::string getFiledValue(const char *field)
             std::cout << "Error reading input. Exiting...\n";
             exit(1);  
         }
-        if (!value.empty())
+        if (!value.empty() && isPrintable(value))
             break; 
         std::cout << "This field mustn't be empty\n";
         std::cout << " === >   Enter Your " << field << " < ===\n";
@@ -286,38 +220,4 @@ void searchForContact(PhoneBook &phoneBook)
         displayContact(phoneBook.getContacts()[index]);
     std::cout << "=====> The end of  Searching For Contact <=====\n";
     return ;
-}
-
-int main()
-{
-    PhoneBook   phoneBook;
-    std::string      command;
-    
-    while(1 && !std::cin.eof())
-    {   
-        std::cout << "Enter a command : (ADD | SEARCH | EXIT)\n"; 
-        if (!getline(std::cin, command))
-        {
-            if (std::cin.eof())
-            {
-                std::cout << "\nEOF detected. Exiting...\n";
-                break;
-            }
-        }
-        if (!command.empty() && (!command.compare("EXIT")))    
-            break;
-        if (!command.empty() && (!command.empty()))
-        {
-            if (!command.compare("ADD"))
-                saveNewContact(phoneBook);
-            else if (!command.compare("SEARCH"))
-            {
-                std::cout << "Search for a Contact \n";
-                searchForContact(phoneBook);
-            }
-            else
-                std::cout << " !!!  try with a valid command : ADD | SEARCH | EXIT !!! \n";
-        }
-    }
-    return 0;
 }

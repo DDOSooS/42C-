@@ -4,7 +4,8 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 GG = c++
 RM = rm -rf
 
-SRC = PhoneBook.cpp
+SRC = PhoneBook.cpp Contact.cpp main.cpp
+
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
