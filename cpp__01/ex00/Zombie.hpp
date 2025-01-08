@@ -14,11 +14,8 @@ class Zombie
         string _name;
 
     public:
-        Zombie(string name):_name(name){}
-        ~Zombie()
-        {
-            cout << this->_name << "Zombie is being destroyed\n"; 
-        }
+        Zombie(string name);
+        ~Zombie();
         void announce( void );
 };
 

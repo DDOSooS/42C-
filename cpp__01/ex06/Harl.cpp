@@ -40,6 +40,18 @@ int hash(std::string level)
     return (4);
 }
 
+/*
+    void (*funcPtr)() = &someFunction;
+    (*funcPtr)();  // Directly calls the function.
+
+    No Object Context:
+    If you omit this, like in the following incorrect attempt:
+    cpp
+    Copy code
+    (*mumberFunc[i])();  // Incorrect for member functions
+    The compiler doesn't have an object context to apply the function pointer to. It can't just execute debug, info, etc., because they are tied to an instance of the class.
+*/
+
 void    Harl::complain( std::string level )
 {
     int hashLevel;

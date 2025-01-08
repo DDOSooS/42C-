@@ -1,8 +1,8 @@
 NAME = Zombie
 
-CXX = g++
+CXX = c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 
 RM = rm -rf
 

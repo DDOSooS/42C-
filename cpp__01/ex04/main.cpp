@@ -37,7 +37,7 @@ void replaceOccurrence(char *fileName, std::string *lines, const char *s1, const
             oldIndex = res + ft_strlen(s1);
             res = currentLine.find(s1, oldIndex);
         }
-        if (oldIndex < currentLine.length())
+        if (oldIndex < currentLine.size())
             file << currentLine.substr(oldIndex);
         file << std::endl;
     }

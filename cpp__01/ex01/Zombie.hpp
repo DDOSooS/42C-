@@ -6,20 +6,16 @@
 #include <string>
 #include <iostream>
 
-using namespace std;
 
 class Zombie
 {
     private:
-        string _name;
+        std::string _name;
 
     public:
-        Zombie() : _name("") {}
-        Zombie(string name):_name(name){}
-        ~Zombie()
-        {
-            cout << this->_name << "Zombie is being destroyed\n"; 
-        }
+        Zombie();
+        Zombie(std::string name);
+        ~Zombie();
 
     void announce(void);
 };
