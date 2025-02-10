@@ -6,6 +6,6 @@ Zombie* zombieHorde( int N, std::string name )
         return NULL;
     Zombie *newZhorde = new Zombie[N];
     for(int i = 0; i < N; i++)
-        new (&newZhorde[i]) Zombie(name);
+        newZhorde[i].setName(name);
     return (newZhorde);
 }

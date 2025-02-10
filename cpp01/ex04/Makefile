@@ -1,12 +1,12 @@
-NAME = Brain
+NAME = SedLoser
 
-CXX = g++
+CXX = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 
 RM = rm -rf
 
-SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

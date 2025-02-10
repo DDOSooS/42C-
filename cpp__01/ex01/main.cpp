@@ -8,6 +8,5 @@ int main()
     for (int i = 0; i < 10; i++)
         tmp[i].announce();
     delete [] tmp;
-    tmp = NULL;
     return 0;
 }
