@@ -44,7 +44,8 @@ void replaceStr(char **av)
         }
         else
             outFile << line;
-        outFile << "\n";
+        if (inFile.peek() != EOF)
+            outFile << "\n";
     }
     inFile.close();
     outFile.close();

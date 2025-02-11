@@ -20,9 +20,7 @@ Weapon::~Weapon()
 
 void Weapon::setType(std::string type)
 {
-    // std::cout << "old " << _type << std::endl;
     this->_type = type;
-    // std::cout << "new " << _type << std::endl<<std::endl; 
 }
 
 std::string Weapon::getType() const

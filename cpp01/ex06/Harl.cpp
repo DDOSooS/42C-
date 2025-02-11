@@ -78,18 +78,16 @@ void Harl::complain(std::string level)
         {
             case 0:
                 (this->*complainLevel[0])();
-                        //Fall through 
                 break;
-
             case 1:
                 (this->*complainLevel[1])();
-                    // Fall through
+                break;
             case 2:
                 (this->*complainLevel[2])();
-                // Fall through
+                break;
             case 3:
                 (this->*complainLevel[3])();
-                // Fall through
+                break;
         }
     }
 }
