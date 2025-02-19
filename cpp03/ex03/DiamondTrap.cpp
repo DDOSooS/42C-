@@ -1,46 +1,46 @@
 #include "./DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap():ClapTrap(), ScavTrap(), FragTrap()
+DiamondTrap::DiamondTrap()
 {
     std::cout << "[Default Constructor] : Diamond object is being Called!\n";
     this->name = "";
-    this->setName("_clap_name");
-    this->setAttackDamage(30);
-    this->setEnergyPoint(50);
-    this->setHitPoint(100);
+    this->_name = name + "_clap_name";
+    this->_attackDamage = 30;
+    this->_energyPoint = 50;
+    this->_hitPoint = 100;
 }
 
-DiamondTrap::DiamondTrap(const std::string &name):ClapTrap(name + "_clap_name"),ScavTrap(name + "_clap_name"),FragTrap(name + "_clap_name")
+DiamondTrap::DiamondTrap(const std::string &name)
 {
     std::cout << "[Constructor] : Diamond object is being Called!\n";
     this->name = name;
-    this->setName(name + "_clap_name");
-    this->setAttackDamage(30);
-    this->setEnergyPoint(50);
-    this->setHitPoint(100);
+    this->_name = name + "_clap_name";
+    this->_attackDamage = 30;
+    this->_energyPoint = 50;
+    this->_hitPoint = 100;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &other):ClapTrap(other.name + "_clap_name"), ScavTrap(other.name + "_clap_name"),FragTrap(other.name + "_clap_name"), name(other.name)
+DiamondTrap::DiamondTrap(const DiamondTrap &other)
+    : ClapTrap(other), ScavTrap(other), FragTrap(other), name(other.name)
 {
     std::cout << "[Constructor] : Diamond object is being Called!\n";
-    this->setAttackDamage(other.getAttackDamage());
-    this->setEnergyPoint(other.getEnergyPoint());
-    this->setHitPoint(other.getHitPoint());
+    this->_name = other.name + "_clap_name";
+    this->_attackDamage = other._attackDamage;
+    this->_energyPoint = other._energyPoint;
+    this->_hitPoint = other._hitPoint;
 }
+
 
 DiamondTrap & DiamondTrap::operator=(const DiamondTrap &other)
 {
     std::cout << "[Copy Assignment Constructor] : Diamond object is being Called!\n";
     if (this != &other)
     {
-        ClapTrap::operator=(other);
-        FragTrap::operator=(other);
-        ScavTrap::operator=(other);
         this->name = other.name;
-        this->setName(this->name + "_clap_name");
-        this->setAttackDamage(other.getAttackDamage());
-        this->setEnergyPoint(other.getEnergyPoint());
-        this->setHitPoint(other.getHitPoint());
+        this->_name = other.name + "_clap_name";
+        this->_attackDamage = other._attackDamage;
+        this->_energyPoint = other._energyPoint;
+        this->_hitPoint = other._hitPoint;
     }
     return *this;
 }
@@ -57,5 +57,5 @@ void DiamondTrap::attack(const std::string &target)
 
 void DiamondTrap::WhoAmI()
 {
-    std::cout << "I' M DAIMOND ROBOT : " << this->name << ", MY GRAND FATHER CLAPTRAP'S NAME: " << this->getName() << std::endl;
+    std::cout << "I' M DAIMOND ROBOT : " << this->name << ", MY GRAND FATHER CLAPTRAP'S NAME: " << this->_name << std::endl;
 }

@@ -1,19 +1,21 @@
 #include "./ScavTrap.hpp"
 
-ScavTrap::ScavTrap():ClapTrap()
+ScavTrap::ScavTrap()
 {
     std::cout << "[Default Constructor] : ScavTrap object is being Called!\n";
-    this->setAttackDamage(20);
-    this->setEnergyPoint(50);
-    this->setHitPoint(100);
+    this->_name = "";
+    this->_attackDamage = 20;
+    this->_energyPoint = 50;
+    this->_hitPoint = 100;
 }
 
-ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name)
+ScavTrap::ScavTrap(const std::string &name)
 {
     std::cout << "[Constructor] : ScavTrap object is being Called!\n";
-    this->setAttackDamage(20);
-    this->setEnergyPoint(50);
-    this->setHitPoint(100);
+    this->_name = name;
+    this->_attackDamage = 20;
+    this->_energyPoint = 50;
+    this->_hitPoint = 100;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &other):ClapTrap(other)
@@ -37,10 +39,10 @@ ScavTrap::~ScavTrap()
 void ScavTrap::attack(const std::string &target)
 {
     std::cout << "=============== [ScavTRAP Attacking Damage] ===============\n";
-    if (this->getHitPoint() && this->getEnergyPoint())
+    if (this->_hitPoint && this->_energyPoint)
     {
-        std::cout << "[ScavTrap] :" << this->getName() << " attacks " << target << ", causing " << this->getAttackDamage() << " points of damage!\n";
-        this->setEnergyPoint(this->getEnergyPoint() - 1);
+        std::cout << "[ScavTrap] :" << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!\n";
+        this->_energyPoint--;
     }
     else
         std::cout << "No energy Or Hit Point are being left try to be Repariared!\n";
@@ -50,5 +52,5 @@ void ScavTrap::attack(const std::string &target)
 void ScavTrap::guardGate()
 {
     std::cout << "=============== [Gate Keeper  Mode] ===============\n";
-    std::cout << "ScavTrap : " << this->getName() << " is now in Gate keeper mode\n\n";
+    std::cout << "ScavTrap : " << this->_name << " is now in Gate keeper mode\n\n";
 }

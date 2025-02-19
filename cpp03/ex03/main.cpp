@@ -4,9 +4,9 @@ int main()
 {
     DiamondTrap diamond1("DiamondOne");
     
-    std::cout << "Hit Point: " << diamond1.getHitPoint() << std::endl;
-    std::cout << "Energy POint: " << diamond1.getEnergyPoint() << std::endl;
-    std::cout << "Attack Damage: " << diamond1.getAttackDamage() << std::endl;
+    // std::cout << "Hit Point: " << diamond1._hitPoint << std::endl;
+    // std::cout << "Energy POint: " << diamond1._energyPoint << std::endl;
+    // std::cout << "Attack Damage: " << diamond1._attackDamage << std::endl;
     diamond1.WhoAmI();
     diamond1.attack("Enemy");
 

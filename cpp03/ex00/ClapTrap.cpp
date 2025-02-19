@@ -51,7 +51,10 @@ void ClapTrap::takeDamage(unsigned int amount)
 {
     std::cout << "=============== [taking Damage] ===============\n";
     if (_hitPoint <=  amount)
+    {
         _hitPoint = 0;
+        return ;
+    }
     std::cout << "ClapTrap :" << this->_name << " has take a Damage causing lose of  :" << amount << " of hit points! \n";
     _hitPoint -= amount;
     std::cout << std::endl;
